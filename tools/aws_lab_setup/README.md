@@ -9,12 +9,12 @@ This is an automated lab setup for Ansible training. It creates five nodes per u
 
 **NOTE**: Because of [a bug introduced in Ansible v2.2.1](https://github.com/ansible/lightbulb/issues/112) you will need to run this provisioner with v2.3.2 or higher.
 
-## Usage ##
-
+## Table Of Contents
+- [AWS Setup](#aws-setup)
+- [AWS Teardown](#aws-teardown)
 
 ### AWS Setup ###
-
-The `provision_lab.yml` playbook creates instances, configures them for password authentication, creates an inventory file for each user with their IPs and credentials. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the the username as a host group. The lab is created in `us-east-1` by default.  Currently only works with `us-east-1`, `us-west-1` and `eu-west-1`.
+The `provision_lab.yml` playbook creates instances, configures them for password authentication, creates an inventory file for each user with their IPs and credentials. An instructor inventory file is also created in the current directory which will let the instructor access the nodes of any student by simply targeting the username as a host group. The lab is created in `us-east-1` by default.  Currently only works with `us-east-1`, `us-west-1`, `eu-west-1`, `ap-southeast-1`, `ap-southeast-2`, `ap-south-1` and `ap-northeast-1`.
 
 #### Email Options ####
 This provisioner by default will send email to participants/students containing information about their lab environment including IPs and credentials. This configuration requires that each participant register for the workshop using their full name and email address.   Alternatively, you can use generic accounts for workshops.  This method offers the advantage of enabling the facilitator to handle "walk-ins" and is a simpler method overall in terms of collecting participant information.
@@ -44,16 +44,7 @@ To set up the lab for Ansible training, follow these steps.
 
 6. Create a `boto` configuration file containing your AWS access key ID and secret access key.
 
-    ```bash
-    mkdir ~/.aws
-    touch ~/.aws/credentials
-    chmod 600 ~/.aws/credentials
-
-    # The file should contain the following:
-    [default]
-    aws_access_key_id = [access key ID]
-    aws_secret_access_key = [secret key]
-    ```
+      Use the quickstart directions provided here: [http://boto3.readthedocs.io/en/latest/guide/quickstart.html](http://boto3.readthedocs.io/en/latest/guide/quickstart.html)
 
 7. __(email)__ Create a free [Sendgrid](http://sendgrid.com) account if you don't have one. Optionally, create an API key to use with this the playbook.
 
@@ -134,7 +125,6 @@ __(no email)__ If you disabled email in your `extra_vars.yml` file, you will nee
   * A student guide and instructor slides are already hosted at http://ansible-workshop.redhatgov.io . (NOTE:  This guide is evolving and newer workshops can be previewed at http://ansible.redhatgov.io . This new version is currently being integrated with the Lightbulb project)
   * Here you will find student instructions broken down into exercises as well as the presentation decks under the __Additional Resources__ drop down.
   * During the workshop, it is recommended that you have a second device or printed copy of the student guide.  Previous workshops have demonstrated that unless you've memorized all of it, you'll likely need to refer to the guide, but your laptop will be projecting the slide decks.  Some students will fall behind and you'll need to refer back to other exercises/slides without having to change the projection for the entire class.
-
 
 ### AWS Teardown ###
 
